@@ -22,7 +22,7 @@ public class UserContr {
     UserServ userServ;
     @Autowired
     RoleRepo roleRepo;
-    @GetMapping("/")
+    @GetMapping({"/", "/login"})
     public String index(){
         return "index";
     }
