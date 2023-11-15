@@ -43,7 +43,7 @@ public class UserServImpl implements UserServ {
 
     @Override
     public User getUserById(Long id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new Exception("El usuario para editar no existe."));
+        return repository.findById(id).orElseThrow(() -> new Exception("El usuario no existe."));
     }
 
     @Override
@@ -65,4 +65,17 @@ public class UserServImpl implements UserServ {
         to.setEmail(from.getEmail());
         to.setRoles(from.getRoles());
     }
+
+    public void deleteUser(Long id) throws Exception {
+        User user = getUserById(id);
+
+        repository.delete(user);
+    }
+
+//    @Override
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+//    public void deleteUser(Long id) throws Exception {
+//        User user = getUserById(id);
+//        repository.delete(user);
+//    }
 }

@@ -72,4 +72,45 @@ public class UserContr {
 
         return "user-form/user-view";
     }
+
+    @PostMapping("/editUser")
+    public String postEditUserForm(@Valid @ModelAttribute("userForm")User user, BindingResult result, ModelMap model) {
+        if(result.hasErrors()) {
+            model.addAttribute("userForm", user);
+            model.addAttribute("formTab","active");
+            model.addAttribute("editMode","true");
+           // model.addAttribute("passwordForm",new ChangePasswordForm(user.getId()));
+        }else {
+            try {
+                userServ.updateUser(user);
+                model.addAttribute("userForm", new User());
+                model.addAttribute("listTab","active");
+            } catch (Exception e) {
+                model.addAttribute("formErrorMessage",e.getMessage());
+                model.addAttribute("userForm", user);
+                model.addAttribute("formTab","active");
+                model.addAttribute("userList", userServ.getAllUsers());
+                model.addAttribute("roles",roleRepo.findAll());
+                model.addAttribute("editMode","true");
+               // model.addAttribute("passwordForm",new ChangePasswordForm(user.getId()));
+            }
+        }
+        model.addAttribute("userList", userServ.getAllUsers());
+        model.addAttribute("roles",roleRepo.findAll());
+        return "user-form/user-view";
+
+    }
+    @GetMapping("/userForm/cancel")
+    public String cancelEditUser(ModelMap model) {
+        return "redirect:/userForm";
+    }
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(Model model, @PathVariable(name="id") Long id) {
+        try {
+            userServ.deleteUser(id);
+        } catch (Exception e) {
+            model.addAttribute("listErrorMessage",e.getMessage());
+        }
+        return userForm(model);
+    }
 }
