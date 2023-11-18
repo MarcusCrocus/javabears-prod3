@@ -114,6 +114,10 @@
 			<!-- Purpose: Provides a set of dependencies to set up Spring Security in your application. -->
 		</dependency>
 		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>

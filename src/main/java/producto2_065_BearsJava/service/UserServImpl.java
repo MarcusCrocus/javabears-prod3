@@ -1,6 +1,7 @@
 package producto2_065_BearsJava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import producto2_065_BearsJava.model.User;
 import producto2_065_BearsJava.repository.UserRepo;
@@ -66,16 +67,16 @@ public class UserServImpl implements UserServ {
         to.setRoles(from.getRoles());
     }
 
-    public void deleteUser(Long id) throws Exception {
-        User user = getUserById(id);
-
-        repository.delete(user);
-    }
-
-//    @Override
-//    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 //    public void deleteUser(Long id) throws Exception {
 //        User user = getUserById(id);
+//
 //        repository.delete(user);
 //    }
+
+    @Override
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public void deleteUser(Long id) throws Exception {
+        User user = getUserById(id);
+        repository.delete(user);
+    }
 }
