@@ -11,7 +11,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user: ${userList}">
+        <!-- Iterate through the user list and display rows based on user role -->
+        <tr th:each="user: ${userList}" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') or (#authorization.expression('hasRole(''ROLE_USER'')') and user.username eq #authentication.principal.username)}">
             <td th:text="${user.id}"></td>
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
@@ -37,5 +38,4 @@
         var id = $("#userIdHiddenInput").val();
         window.location = "deleteUser/"+id;
     }
-
 </script>
