@@ -32,7 +32,7 @@ public class MarcaContr {
     @PostMapping("marcas/save")
     public String saveMarca(MarcaVehiculo marcaVehiculo){
         marcaVehiculoRepo.save(marcaVehiculo);
-        return "redirect:/";
+        return "redirect:/userForm";
     }
 
 
@@ -42,7 +42,7 @@ public class MarcaContr {
        model.addAttribute("listMarcas", listMarcas);
         return "marca/listamarca_form";
     }
-    //TODO: add botton editar
+
     @GetMapping("/marcas/edit/{id}")
     public String editarMarca(@PathVariable("id") int id, Model model){
 

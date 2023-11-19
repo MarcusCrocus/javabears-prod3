@@ -50,9 +50,9 @@
         <a class="nav-link text-white" th:href="@{/tipovehiculos/new}">Crear Nuevo Tipo de Vehículo</a>
       </li>
       <!-- Tabla de Vehículos -->
-      <li class="nav-item">
-        <a class="nav-link text-white" th:href="@{/vehiculos}">Tabla de Vehiculos</a>
-      </li>
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link text-white" th:href="@{/vehiculos}">Tabla de Vehiculos</a>-->
+<!--      </li>-->
       <!-- Crear Nuevo Vehículo (visible only for users without ROLE_USER) -->
       <li class="nav-item" th:if="${not #authorization.expression('hasAuthority(''ROLE_USER'')')}">
         <a class="nav-link text-white" th:href="@{/vehiculos/new}">Crear Nuevo Vehículo</a>

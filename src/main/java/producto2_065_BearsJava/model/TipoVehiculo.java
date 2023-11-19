@@ -15,7 +15,7 @@ public class TipoVehiculo {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "marca")
+    @JoinColumn(name = "marca_id")
     private MarcaVehiculo marca;
 
     public int getId() {

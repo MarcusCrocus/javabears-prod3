@@ -14,7 +14,8 @@ public class MarcaVehiculo {
     private int id;
     @Column(length = 125, nullable = false, unique = true)
     private String name;
-    @OneToMany(mappedBy = "marca")
+    @OneToMany
+    @JoinColumn(name = "marca_id")
     private List<TipoVehiculo> tipoVehiculoList = new ArrayList<>();
 
     public int getId() {

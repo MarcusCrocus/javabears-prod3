@@ -13,8 +13,8 @@
     <h1 th:if="${marca.id == null}">Crear Marca</h1>
     <h1 th:unless="${marca.id == null}">Modificar Marca</h1>
 
-    <form action="#" th:action = "@{/marcas/save}" th:object="${marca}" method="POST">
-        <input type="hidden" th:value="${marca.id}"/>
+    <form action="#" th:action = "@{/marcas/save}" th:object="${marca}" method="post">
+        <input type="hidden" th:field="*{id}" th:value="${marca.id}"/>
         <div class="m-4">
             <div class="form-group row">
                 <label class="col-form-label col-sm-2">Marca</label>

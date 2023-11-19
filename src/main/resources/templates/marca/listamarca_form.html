@@ -24,22 +24,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="marcavehiculo : ${listMarcas}">
-                    <td th:text="${marcavehiculo.id}"></td>
-                    <td th:text="${marcavehiculo.name}"></td>
-                    <td>
+            <tr th:each="marcavehiculo : ${listMarcas}">
+                <td th:text="${marcavehiculo.id}"></td>
+                <td th:text="${marcavehiculo.name}"></td>
+                <td>
                     <span th:each="tipo, iterStat : ${marcavehiculo.tipoVehiculoList}">
                         <span th:text="${tipo.name}"></span>
                         <span th:if="${!iterStat.last}">, </span>
                     </span>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" th:href="@{'/marcas/edit/' + ${marcavehiculo.id}}" >Editar</a>
-                        <span style="margin-right: 50px;"></span>
-                        <a class="btn btn-primary" th:href="@{'/marcas/remove/'+ ${marcavehiculo.id}}" > Borrar </a>
-                    </td>
+                </td>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/marcas/edit/' + ${marcavehiculo.id}}" >Editar</a>
+                    <span style="margin-right: 50px;"></span>
+                    <a class="btn btn-primary" th:href="@{'/marcas/remove/'+ ${marcavehiculo.id}}" > Borrar </a>
+                </td>
 
-                </tr>
+            </tr>
             </tbody>
         </table>
         <div class="row">

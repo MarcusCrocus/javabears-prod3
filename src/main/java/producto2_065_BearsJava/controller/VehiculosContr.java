@@ -33,15 +33,15 @@ public class VehiculosContr {
     @PostMapping("/vehiculos/save")
     public String saveVehiculo(Vehiculo vh){
         vehiculosRepo.save(vh);
-        return "redirect:/vehiculos";
+        return "redirect:/userForm";
     }
 
-    @GetMapping("/vehiculos")
-    public String listaVehiculos(Model model){
-        List<Vehiculo> listaVehiculos = vehiculosRepo.findAll();
-        model.addAttribute("listaVehiculos", listaVehiculos);
-        return "vehiculos/listavehiculos_form";
-    }
+//    @GetMapping("/vehiculos")
+//    public String listaVehiculos(Model model){
+//        List<Vehiculo> listaVehiculos = vehiculosRepo.findAll();
+//        model.addAttribute("listaVehiculos", listaVehiculos);
+//        return "vehiculos/listavehiculos_form";
+//    }
 
     @GetMapping("vehiculos/edit/{id}")
     public String showEditVehiculoForm(@PathVariable("id") Long id, Model model){

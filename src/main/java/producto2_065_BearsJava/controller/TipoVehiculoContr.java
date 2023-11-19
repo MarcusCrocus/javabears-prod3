@@ -9,20 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import producto2_065_BearsJava.model.TipoVehiculo;
 import producto2_065_BearsJava.repository.TipoVehiculosRepo;
-
-
-import java.util.List;
 @Controller
 public class TipoVehiculoContr {
     @Autowired
     private TipoVehiculosRepo repo;
 
-    @GetMapping("/tipovehiculos")
-    public String listTipoVehiculos(Model model) {
-        List<TipoVehiculo> listTipoVehiculos = repo.findAll();
-        model.addAttribute("listTipoVehiculos", listTipoVehiculos);
-        return "vehiculos/tipovehiculos";
-    }
+//    @GetMapping("/tipovehiculos")
+//    public String listTipoVehiculos(Model model) {
+//        List<TipoVehiculo> listTipoVehiculos = repo.findAll();
+//        model.addAttribute("listTipoVehiculos", listTipoVehiculos);
+//        return "vehiculos/tipovehiculos";
+//    }
 
     @GetMapping("/tipovehiculos/new")
     public String showTipovehiculosNewFrom(Model model) {
@@ -44,7 +41,7 @@ public class TipoVehiculoContr {
             // creacion de nuevo tipo
             repo.save(vh);
         }
-        return "redirect:/tipovehiculos";
+        return "redirect:/userForm";
     }
 
     @GetMapping("/tipovehiculos/edit/{id}")

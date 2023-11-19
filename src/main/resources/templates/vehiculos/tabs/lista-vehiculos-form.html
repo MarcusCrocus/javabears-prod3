@@ -1,0 +1,32 @@
+<div class="table-responsive">
+    <table id="vehiculosTable" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Matricula</th>
+            <th scope="col">Motor</th>
+            <th scope="col">Color</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterar a través de la lista de vehículos y mostrar filas -->
+        <tr th:each="vehiculo : ${listaVehiculos}">
+            <td th:text="${vehiculo.id}"></td>
+            <td th:text="${vehiculo.tipoVehiculo.name}"></td>
+            <td th:text="${vehiculo.matricula}"></td>
+            <td th:text="${vehiculo.motor}"></td>
+            <td th:text="${vehiculo.color}"></td>
+            <td>
+                <a href="#" th:href="@{'/vehiculos/edit/' + ${vehiculo.id}}"><i class="fas fa-edit"></i></a>
+                | <a href="#" th:href="@{'/vehiculos/remove/' + ${vehiculo.id}}"><i class="fas fa-user-times"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${ListErrorMessage}">Error Message</div>
+</div>
+
+

@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import producto2_065_BearsJava.model.TipoVehiculo;
 import producto2_065_BearsJava.model.User;
+import producto2_065_BearsJava.model.Vehiculo;
 import producto2_065_BearsJava.repository.RoleRepo;
+import producto2_065_BearsJava.repository.TipoVehiculosRepo;
+import producto2_065_BearsJava.repository.VehiculosRepo;
 import producto2_065_BearsJava.service.UserServ;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -22,16 +27,30 @@ public class UserContr {
     UserServ userServ;
     @Autowired
     RoleRepo roleRepo;
+    @Autowired
+    VehiculosRepo vehiculosRepo;
+
+    @Autowired
+    private TipoVehiculosRepo repo;
+
     @GetMapping({"/", "/login"})
     public String index(){
         return "index";
     }
     @GetMapping("/userForm")
     public String userForm(Model model){
+            //User controller tab
         model.addAttribute("userForm", new User());
         model.addAttribute("userList", userServ.getAllUsers());
         model.addAttribute("roles",roleRepo.findAll());
         model.addAttribute("listTab", "active");
+            //Vehiculos List controller tab
+        List<Vehiculo> listaVehiculos = vehiculosRepo.findAll();
+        model.addAttribute("listaVehiculos", listaVehiculos);
+            //Tipo de Vehiculos List controller tab
+        List<TipoVehiculo> listTipoVehiculos = repo.findAll();
+        model.addAttribute("listTipoVehiculos", listTipoVehiculos);
+
         return "user-form/user-view";
     }
     @PostMapping("/userForm")
