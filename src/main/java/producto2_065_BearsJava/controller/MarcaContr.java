@@ -36,12 +36,12 @@ public class MarcaContr {
     }
 
 
-    @GetMapping("/marcas")
-    public String listaTipoVehiculos(Model model){
-       List<MarcaVehiculo> listMarcas = marcaVehiculoRepo.findAll();
-       model.addAttribute("listMarcas", listMarcas);
-        return "marca/listamarca_form";
-    }
+//    @GetMapping("/marcas")
+//    public String listaTipoVehiculos(Model model){
+//       List<MarcaVehiculo> listMarcas = marcaVehiculoRepo.findAll();
+//       model.addAttribute("listMarcas", listMarcas);
+//        return "marca/listamarca_form";
+//    }
 
     @GetMapping("/marcas/edit/{id}")
     public String editarMarca(@PathVariable("id") int id, Model model){

@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <table id="marcasTable" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Tipo de Vehiculo</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterating over the list of marcas and displaying rows -->
+        <tr th:each="marcavehiculo : ${listMarcas}">
+            <td th:text="${marcavehiculo.id}"></td>
+            <td th:text="${marcavehiculo.name}"></td>
+            <td>
+                <!-- Iterating over tipoVehiculoList for each marca -->
+                <span th:each="tipo, iterStat : ${marcavehiculo.tipoVehiculoList}">
+                        <span th:text="${tipo.name}"></span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
+            </td>
+            <td>
+                <a href="#" th:href="@{'/marcas/edit/' + ${marcavehiculo.id}}"><i class="fas fa-edit"></i></a>
+                | <a href="#" th:href="@{'/marcas/remove/'+ ${marcavehiculo.id}}"><i class="fas fa-user-times"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Displaying an error message if present -->
+    <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${ListErrorMessage}">Error Message</div>
+</div>

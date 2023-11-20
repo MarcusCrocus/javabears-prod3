@@ -4,72 +4,56 @@
   <meta charset="UTF-8">
   <title>BearsJava</title>
 
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
         crossorigin="anonymous">
   <style>
-
-    .custom-menu {
-        position: fixed;
-        top: 0;
-        left: -250px; /* Ancho del menú desplegable */
-        width: 250px;
-        height: 100%;
-        background-color: #343a40; /* Color de fondo del menú */
-        padding: 1rem;
-        transition: left 0.3s;
-    }
-
-    .custom-menu.show {
-        left: 0;
+    /* Navbar transparente */
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
+
 <body>
-<div class="container my-2">
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="container my-2" th:if="${not #authorization.expression('hasAuthority(''ROLE_USER'')')}">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">Panel de Administrador</a>
+
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/marcas/new}">Crear Marca de Vehiculo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/tipovehiculos/new}">Crear Nuevo Tipo de Vehículo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/vehiculos/new}">Crear Nuevo Vehículo</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
   </nav>
+  <!-- Navbar -->
 
-  <div class="custom-menu" id="navbarToggleExternalContent">
-    <h5 class="text-white h4">Menú</h5>
-    <ul class="navbar-nav">
-      <!-- Tipos de vehículos -->
-      <li class="nav-item">
-        <a class="nav-link text-white" th:href="@{/tipovehiculos}">Tipos de vehiculos</a>
-      </li>
-      <!-- Crear Nuevo Tipo de Vehículo (visible only for users without ROLE_USER) -->
-      <li class="nav-item" th:if="${not #authorization.expression('hasAuthority(''ROLE_USER'')')}">
-        <a class="nav-link text-white" th:href="@{/tipovehiculos/new}">Crear Nuevo Tipo de Vehículo</a>
-      </li>
-      <!-- Tabla de Vehículos -->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link text-white" th:href="@{/vehiculos}">Tabla de Vehiculos</a>-->
-<!--      </li>-->
-      <!-- Crear Nuevo Vehículo (visible only for users without ROLE_USER) -->
-      <li class="nav-item" th:if="${not #authorization.expression('hasAuthority(''ROLE_USER'')')}">
-        <a class="nav-link text-white" th:href="@{/vehiculos/new}">Crear Nuevo Vehículo</a>
-      </li>
-      <!-- Lista de Marcas -->
-      <li class="nav-item">
-        <a class="nav-link text-white" th:href="@{/marcas}">Lista de marcas</a>
-      </li>
-      <li class="nav-item" th:if="${not #authorization.expression('hasAuthority(''ROLE_USER'')')}">
-        <a class="nav-link text-white" th:href="@{/marcas/new}" >Crear Marca de Vehiculo</a>
-      </li>
-    </ul>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 </body>
+
 </html>

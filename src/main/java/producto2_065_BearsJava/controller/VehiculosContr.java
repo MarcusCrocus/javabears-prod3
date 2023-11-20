@@ -59,7 +59,7 @@ public class VehiculosContr {
         // Elimina el Vehículo por su ID directamente del repositorio
         vehiculosRepo.deleteById(id);
 
-        return "redirect:/vehiculos";
+        return "redirect:/userForm";
     }
 
 }

@@ -42,6 +42,10 @@
 
             // Initializar DataTable for #tipoVehiculoTable
             $('#tipoVehiculosTable').DataTable();
+
+            // Initializar DataTable for #tipoMarcasTable
+            $('#marcasTable').DataTable();
+
         });
     </script>
 </head>
@@ -52,6 +56,9 @@
 <div class="container">
     <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
         <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" id="marca-tab" data-toggle="tab" href="#tipo-marca" role="tab" aria-controls="vehiculos" aria-selected="false">Marca Vehiculos</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" id="tipo-tab" data-toggle="tab" href="#tipo-vehiculo" role="tab" aria-controls="vehiculos" aria-selected="false">Tipo Vehiculos</a>
             </li>
@@ -70,6 +77,16 @@
         </ul>
 
         <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" id="tipo-marca" role="tabpanel" aria-labelledby="veh-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Marcas de Vehiculo</h4>
+                    </div>
+                    <div class="card-body">
+                        <div th:include="vehiculos/tabs/lista-marcas-form.html" th:remove="tag"></div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane fade" id="tipo-vehiculo" role="tabpanel" aria-labelledby="veh-tab">
                 <div class="card">
                     <div class="card-header">

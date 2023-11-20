@@ -2,6 +2,7 @@ package producto2_065_BearsJava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import producto2_065_BearsJava.model.User;
 import producto2_065_BearsJava.repository.UserRepo;
@@ -37,8 +38,13 @@ public class UserServImpl implements UserServ {
     @Override
     public User createUser(User user) throws Exception {
         if (checkUsernameAvailable(user) && checkPasswordValid(user)) {
+
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
             user = repository.save(user);
         }
+
         return user;
     }
 
@@ -66,12 +72,6 @@ public class UserServImpl implements UserServ {
         to.setEmail(from.getEmail());
         to.setRoles(from.getRoles());
     }
-
-//    public void deleteUser(Long id) throws Exception {
-//        User user = getUserById(id);
-//
-//        repository.delete(user);
-//    }
 
     @Override
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")

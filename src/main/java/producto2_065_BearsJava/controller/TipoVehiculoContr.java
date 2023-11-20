@@ -56,7 +56,7 @@ public class TipoVehiculoContr {
     @GetMapping("/tipovehiculos/remove/{id}")
     public String removeTipoVehiculo(@PathVariable("id") int id){
         repo.deleteById(id);
-        return "redirect:/tipovehiculos";
+        return "redirect:/userForm";
     }
 }
 

@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import producto2_065_BearsJava.model.MarcaVehiculo;
 import producto2_065_BearsJava.model.TipoVehiculo;
 import producto2_065_BearsJava.model.User;
 import producto2_065_BearsJava.model.Vehiculo;
+import producto2_065_BearsJava.repository.MarcaVehiculoRepo;
 import producto2_065_BearsJava.repository.RoleRepo;
 import producto2_065_BearsJava.repository.TipoVehiculosRepo;
 import producto2_065_BearsJava.repository.VehiculosRepo;
@@ -32,6 +34,8 @@ public class UserContr {
 
     @Autowired
     private TipoVehiculosRepo repo;
+    @Autowired
+    private MarcaVehiculoRepo marcaVehiculoRepo;
 
     @GetMapping({"/", "/login"})
     public String index(){
@@ -44,12 +48,18 @@ public class UserContr {
         model.addAttribute("userList", userServ.getAllUsers());
         model.addAttribute("roles",roleRepo.findAll());
         model.addAttribute("listTab", "active");
+
             //Vehiculos List controller tab
         List<Vehiculo> listaVehiculos = vehiculosRepo.findAll();
         model.addAttribute("listaVehiculos", listaVehiculos);
+
             //Tipo de Vehiculos List controller tab
         List<TipoVehiculo> listTipoVehiculos = repo.findAll();
         model.addAttribute("listTipoVehiculos", listTipoVehiculos);
+
+            //Marca de Vehiculos List controller tab
+        List<MarcaVehiculo> listMarcas = marcaVehiculoRepo.findAll();
+        model.addAttribute("listMarcas", listMarcas);
 
         return "user-form/user-view";
     }
@@ -84,7 +94,7 @@ public class UserContr {
 
         model.addAttribute("userForm", userToEdit);
         model.addAttribute("userList", userServ.getAllUsers());
-        model.addAttribute("roles",roleRepo.findAll());
+//        model.addAttribute("roles",roleRepo.findAll());
         model.addAttribute("formTab","active");
         model.addAttribute("editMode","true");
 //        model.addAttribute("passwordForm",new ChangePasswordForm(id));
