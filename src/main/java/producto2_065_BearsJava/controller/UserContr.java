@@ -126,7 +126,7 @@ public class UserContr {
         }
         model.addAttribute("userList", userServ.getAllUsers());
         model.addAttribute("roles",roleRepo.findAll());
-        return "user-form/user-view";
+        return "redirect:/userForm";
 
     }
     @GetMapping("/userForm/cancel")
