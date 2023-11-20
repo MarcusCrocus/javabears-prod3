@@ -94,7 +94,7 @@ public class UserContr {
 
         model.addAttribute("userForm", userToEdit);
         model.addAttribute("userList", userServ.getAllUsers());
-//        model.addAttribute("roles",roleRepo.findAll());
+        model.addAttribute("roles",roleRepo.findAll());
         model.addAttribute("formTab","active");
         model.addAttribute("editMode","true");
 //        model.addAttribute("passwordForm",new ChangePasswordForm(id));

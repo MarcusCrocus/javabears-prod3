@@ -57,27 +57,37 @@
     <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
-                <a class="nav-link" id="marca-tab" data-toggle="tab" href="#tipo-marca" role="tab" aria-controls="vehiculos" aria-selected="false">Marca Vehiculos</a>
+                <a class="nav-link" th:classappend=" ${listMarcas}" id="marca-tab" data-toggle="tab" href="#tipo-marca"
+                   role="tab" aria-controls="vehiculos" aria-selected="false">Marca Vehiculos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tipo-tab" data-toggle="tab" href="#tipo-vehiculo" role="tab" aria-controls="vehiculos" aria-selected="false">Tipo Vehiculos</a>
+                <a class="nav-link" th:classappend=" ${listTipoVehiculos}" id="tipo-tab" data-toggle="tab"
+                   href="#tipo-vehiculo"
+                   role="tab" aria-controls="vehiculos" aria-selected="false">Tipo Vehiculos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="veh-tab" data-toggle="tab" href="#vehiculos" role="tab" aria-controls="vehiculos" aria-selected="false">Vehículos</a>
+                <a class="nav-link" th:classappend=" ${listaVehiculos}" id="veh-tab" data-toggle="tab"
+                   href="#vehiculos"
+                   role="tab" aria-controls="vehiculos" aria-selected="false">Vehículos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " th:classappend=" ${listTab}" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">List</a>
+                <a class="nav-link" th:classappend=" ${listTab}" id="list-tab" data-toggle="tab" href="#list"
+                   role="tab" aria-controls="list" aria-selected="false">List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:classappend=" ${formTab}" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Form</a>
+                <a class="nav-link" th:classappend=" ${formTab}" id="form-tab" data-toggle="tab" href="#form"
+                   role="tab" aria-controls="form" aria-selected="true">Form</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" th:href="@{/logout}"><span th:text="${#authentication.getPrincipal().getUsername()}"> logout </span> - <span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>
+                <a class="nav-link" href="#" th:href="@{/logout}"><span
+                        th:text="${#authentication.getPrincipal().getUsername()}"> logout  </span> - <span
+                        class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>
             </li>
         </ul>
 
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade" id="tipo-marca" role="tabpanel" aria-labelledby="veh-tab">
+            <div class="tab-pane fade" th:classappend=" ${listMarcas}" id="tipo-marca" role="tabpanel"
+                 aria-labelledby="veh-tab">
                 <div class="card">
                     <div class="card-header">
                         <h4>Marcas de Vehiculo</h4>
@@ -87,7 +97,8 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="tipo-vehiculo" role="tabpanel" aria-labelledby="veh-tab">
+            <div class="tab-pane fade" th:classappend=" ${listTipoVehiculos}" id="tipo-vehiculo" role="tabpanel"
+                 aria-labelledby="veh-tab">
                 <div class="card">
                     <div class="card-header">
                         <h4>Tipos de Vehiculo</h4>
@@ -97,7 +108,8 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="vehiculos" role="tabpanel" aria-labelledby="veh-tab">
+            <div class="tab-pane fade" th:classappend=" ${listaVehiculos}" id="vehiculos" role="tabpanel"
+                 aria-labelledby="veh-tab">
                 <div class="card">
                     <div class="card-header">
                         <h4>Vehiculos</h4>
@@ -107,7 +119,8 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade show" th:classappend=" ${listTab}" id="list" role="tabpanel" aria-labelledby="list-tab">
+            <div class="tab-pane fade show" th:classappend=" ${listTab}" id="list" role="tabpanel"
+                 aria-labelledby="list-tab">
                 <div class="card">
                     <div class="card-header">
                         <h4>Datos de Usuario</h4>
