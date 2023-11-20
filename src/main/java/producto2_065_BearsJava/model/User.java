@@ -43,9 +43,7 @@ public class User implements Serializable {
     private String confirmPassword;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 
     private Set<Role> roles;
 
@@ -115,16 +113,25 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User user)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof User user))
+            return false;
 
-        if (getId() != user.getId()) return false;
-        if (!getFirstName().equals(user.getFirstName())) return false;
-        if (!getLastName().equals(user.getLastName())) return false;
-        if (!getEmail().equals(user.getEmail())) return false;
-        if (!getUsername().equals(user.getUsername())) return false;
-        if (!getPassword().equals(user.getPassword())) return false;
-        if (!getConfirmPassword().equals(user.getConfirmPassword())) return false;
+        if (getId() != user.getId())
+            return false;
+        if (!getFirstName().equals(user.getFirstName()))
+            return false;
+        if (!getLastName().equals(user.getLastName()))
+            return false;
+        if (!getEmail().equals(user.getEmail()))
+            return false;
+        if (!getUsername().equals(user.getUsername()))
+            return false;
+        if (!getPassword().equals(user.getPassword()))
+            return false;
+        if (!getConfirmPassword().equals(user.getConfirmPassword()))
+            return false;
         return getRoles().equals(user.getRoles());
     }
 

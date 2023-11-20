@@ -1,7 +1,7 @@
 package producto2_065_BearsJava.model;
 
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "vehiculo")
@@ -24,6 +24,17 @@ public class Vehiculo {
     @ManyToOne
     @JoinColumn(name = "tipovehiculo_id")
     private TipoVehiculo tipoVehiculo;
+
+    @OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY)
+    private List<Rental> rentals;
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
 
     public long getId() {
         return id;
