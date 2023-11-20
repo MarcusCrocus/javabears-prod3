@@ -25,6 +25,11 @@ public class Vehiculo {
     @JoinColumn(name = "tipovehiculo_id")
     private TipoVehiculo tipoVehiculo;
 
+    // A vehicle belongs to a single user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User usuarioPropietario;
+
     public long getId() {
         return id;
     }
@@ -63,5 +68,13 @@ public class Vehiculo {
 
     public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
         this.tipoVehiculo = tipoVehiculo;
+    }
+
+    public User getUsuarioPropietario() {
+        return usuarioPropietario;
+    }
+
+    public void setUsuarioPropietario(User usuarioPropietario) {
+        this.usuarioPropietario = usuarioPropietario;
     }
 }

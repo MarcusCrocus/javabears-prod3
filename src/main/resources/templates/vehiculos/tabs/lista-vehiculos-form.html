@@ -7,6 +7,7 @@
             <th scope="col">Matricula</th>
             <th scope="col">Motor</th>
             <th scope="col">Color</th>
+            <th scope="col">Asignacion</th>
             <th></th>
         </tr>
         </thead>
@@ -18,6 +19,16 @@
             <td th:text="${vehiculo.matricula}"></td>
             <td th:text="${vehiculo.motor}"></td>
             <td th:text="${vehiculo.color}"></td>
+            <td>
+                <!-- Form to assign the vehicle to a user -->
+                <form th:action="@{'/vehiculos/assign/' + ${vehiculo.id}}" method="post">
+                    <!-- Dropdown list of usernames -->
+                    <select name="userId">
+                        <option th:each="user : ${userList}" th:value="${user.id}" th:text="${user.username}"></option>
+                    </select>
+                    <button type="submit">Assign</button>
+                </form>
+            </td>
             <td>
                 <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <a href="#" th:href="@{'/vehiculos/edit/' + ${vehiculo.id}}"><i class="fas fa-edit"></i></a>

@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import producto2_065_BearsJava.model.MarcaVehiculo;
 import producto2_065_BearsJava.model.TipoVehiculo;
 import producto2_065_BearsJava.model.User;
@@ -141,5 +138,23 @@ public class UserContr {
             model.addAttribute("listErrorMessage",e.getMessage());
         }
         return userForm(model);
+    }
+
+    @PostMapping("/vehiculos/assign/{id}")
+    public String assignVehicleToUser(@PathVariable Long id, @RequestParam Long userId) {
+        try {
+            Vehiculo vehiculo = vehiculosRepo.findById(id).orElseThrow(() -> new Exception("Vehicle not found"));
+            User user = userServ.getUserById(userId);
+
+            // Assign the vehicle to the user
+            vehiculo.setUsuarioPropietario(user);
+            vehiculosRepo.save(vehiculo);
+
+            // You might want to redirect to the vehicle list or user form after the assignment
+            return "redirect:/userForm";
+        } catch (Exception e) {
+            // Handle the exception (e.g., log it or show an error message)
+            return "redirect:/userForm?error=" + e.getMessage();
+        }
     }
 }

@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,8 +47,11 @@ public class User implements Serializable {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-
     private Set<Role> roles;
+
+    // A user can have multiple vehicles
+    @OneToMany(mappedBy = "usuarioPropietario", cascade = CascadeType.ALL)
+    private List<Vehiculo> vehiculos;
 
     public long getId() {
         return id;
@@ -105,6 +109,14 @@ public class User implements Serializable {
         this.confirmPassword = confirmPassword;
     }
 
+    public List<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -141,18 +153,6 @@ public class User implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
+
 
 }
