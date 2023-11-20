@@ -146,14 +146,14 @@ public class UserContr {
             Vehiculo vehiculo = vehiculosRepo.findById(id).orElseThrow(() -> new Exception("Vehicle not found"));
             User user = userServ.getUserById(userId);
 
-            // Assign the vehicle to the user
+
             vehiculo.setUsuarioPropietario(user);
             vehiculosRepo.save(vehiculo);
 
-            // You might want to redirect to the vehicle list or user form after the assignment
+
             return "redirect:/userForm";
         } catch (Exception e) {
-            // Handle the exception (e.g., log it or show an error message)
+
             return "redirect:/userForm?error=" + e.getMessage();
         }
     }
