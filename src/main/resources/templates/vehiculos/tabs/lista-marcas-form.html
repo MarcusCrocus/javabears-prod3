@@ -21,8 +21,11 @@
                     </span>
             </td>
             <td>
-                <a href="#" th:href="@{'/marcas/edit/' + ${marcavehiculo.id}}"><i class="fas fa-edit"></i></a>
+                <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <a href="#" th:href="@{'/marcas/edit/' + ${marcavehiculo.id}}"><i class="fas fa-edit"></i></a>
                 | <a href="#" th:href="@{'/marcas/remove/'+ ${marcavehiculo.id}}"><i class="fas fa-user-times"></i></a>
+                </span>
+
             </td>
         </tr>
         </tbody>

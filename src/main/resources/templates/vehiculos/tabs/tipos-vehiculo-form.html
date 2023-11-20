@@ -13,8 +13,10 @@
             <td th:text="${tipovehiculo.id}"></td>
             <td th:text="${tipovehiculo.name}"></td>
             <td>
+                <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <a href="#" th:href="@{'/tipovehiculos/edit/' + ${tipovehiculo.id}}"><i class="fas fa-edit"></i></a>
                 | <a href="#" th:href="@{'/tipovehiculos/remove/' + ${tipovehiculo.id}}"><i class="fas fa-user-times"></i></a>
+                </span>
             </td>
         </tr>
         </tbody>
