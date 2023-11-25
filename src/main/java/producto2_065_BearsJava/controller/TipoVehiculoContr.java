@@ -1,6 +1,7 @@
 package producto2_065_BearsJava.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +23,14 @@ public class TipoVehiculoContr {
 //    }
 
     @GetMapping("/tipovehiculos/new")
+    @PreAuthorize("hasRole('ADMIN')")
     public String showTipovehiculosNewFrom(Model model) {
         model.addAttribute("tipovehiculo", new TipoVehiculo());
         return "vehiculos/tipovehiculo_form";
     }
 
-    @PostMapping("/tipodevehiculos/save")
+    @PostMapping("/userForm/tipodevehiculos/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public String saveTipoVehiculo(@ModelAttribute("tipovehiculo") TipoVehiculo vh) {
         if (vh.getId() > 0) {
             // case para editar y guardar si existe
@@ -45,6 +48,7 @@ public class TipoVehiculoContr {
     }
 
     @GetMapping("/tipovehiculos/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String showEditTipoVehiculoForm(@PathVariable("id") int id, Model model) {
         TipoVehiculo tipoVehiculo = repo.findById(id).orElse(null);
         if (tipoVehiculo != null) {
@@ -54,6 +58,7 @@ public class TipoVehiculoContr {
     }
 
     @GetMapping("/tipovehiculos/remove/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String removeTipoVehiculo(@PathVariable("id") int id){
         repo.deleteById(id);
         return "redirect:/userForm";

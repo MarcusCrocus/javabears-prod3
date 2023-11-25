@@ -1,6 +1,7 @@
 package producto2_065_BearsJava.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class VehiculosContr {
     private VehiculosRepo vehiculosRepo;
 
     @GetMapping("/vehiculos/new")
+    @PreAuthorize("hasRole('ADMIN')")
     public String showVehiculoNewFrom(Model model) {
         List<TipoVehiculo> listaVehiculos =  tipoVehiculosRepo.findAll();
 
@@ -31,6 +33,7 @@ public class VehiculosContr {
     }
 
     @PostMapping("/vehiculos/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public String saveVehiculo(Vehiculo vh){
         vehiculosRepo.save(vh);
         return "redirect:/userForm";
@@ -44,6 +47,7 @@ public class VehiculosContr {
 //    }
 
     @GetMapping("vehiculos/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String showEditVehiculoForm(@PathVariable("id") Long id, Model model){
         Vehiculo vehiculo = vehiculosRepo.findById(id).get();
         model.addAttribute("vehiculo", vehiculo);
@@ -55,6 +59,7 @@ public class VehiculosContr {
         return "vehiculos/new_vehiculo_form";
     }
     @GetMapping("/vehiculos/remove/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String removeVehiculo(@PathVariable("id") Long id) {
         // Elimina el Vehículo por su ID directamente del repositorio
         vehiculosRepo.deleteById(id);

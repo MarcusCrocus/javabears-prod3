@@ -1,6 +1,7 @@
 package producto2_065_BearsJava.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class MarcaContr {
     private TipoVehiculosRepo tipoVehiculosRepo;
 
     @GetMapping ("/marcas/new")
+    @PreAuthorize("hasRole('ADMIN')")
     public String showCreateMarcaForm(Model model){
         List<TipoVehiculo> tipoVehiculoList = tipoVehiculosRepo.findAll();
         model.addAttribute("tipoVehiculoList", tipoVehiculoList);
@@ -30,6 +32,7 @@ public class MarcaContr {
         return "marca/marca_form";
     }
     @PostMapping("marcas/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public String saveMarca(MarcaVehiculo marcaVehiculo){
         marcaVehiculoRepo.save(marcaVehiculo);
         return "redirect:/userForm";
@@ -44,6 +47,7 @@ public class MarcaContr {
 //    }
 
     @GetMapping("/marcas/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editarMarca(@PathVariable("id") int id, Model model){
 
         MarcaVehiculo marcaVehiculo = marcaVehiculoRepo.findById(id).get();
@@ -55,6 +59,7 @@ public class MarcaContr {
         return "marca/marca_form";
     }
     @GetMapping("/marcas/remove/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String removeMarca(@PathVariable("id") int id){
         marcaVehiculoRepo.deleteById(id);
         return "redirect:/marcas";
